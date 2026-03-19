@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flex App - Twoje Finanse</title>
     <style>
-        /* STYL BAZOWY (Styl Apple/iOS) */
         :root {
             --bg-color: #f5f5f7;
             --text-color: #1d1d1f;
@@ -25,14 +24,37 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+        }
+        
+        /* PRZEŁĄCZNIK JĘZYKÓW */
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            padding: 5px 10px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .lang-switch a {
+            text-decoration: none;
+            font-size: 24px;
+            margin: 0 5px;
+            opacity: 0.4;
+            transition: 0.3s;
+        }
+        .lang-switch a.active {
+            opacity: 1;
+            transform: scale(1.1);
         }
 
-        /* NAWIGACJA (ZAKŁADKI) */
+        /* NAWIGACJA */
         nav {
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-top: 40px;
+            margin-top: 60px;
             margin-bottom: 30px;
             background: var(--border);
             padding: 5px;
@@ -75,25 +97,21 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* NAGŁÓWKI I LOGO */
         h1, h2 { margin-top: 0; }
         .text-center { text-align: center; }
-        .logo-placeholder {
+        
+        /* LOGO APLIKACJI */
+        .app-logo {
             width: 100px;
             height: 100px;
-            background: linear-gradient(135deg, #007aff, #00c6ff);
             border-radius: 22px;
             margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
+            display: block;
             box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3);
+            object-fit: cover;
         }
 
-        /* ROZWIJANE LISTY (INSTRUKCJE) */
+        /* ROZWIJANE LISTY */
         details {
             background: var(--bg-color);
             border-radius: 12px;
@@ -123,7 +141,6 @@
             font-size: 15px;
         }
 
-        /* LISTY AKTUALIZACJI */
         .update-box {
             background: var(--bg-color);
             padding: 15px;
@@ -131,12 +148,16 @@
             margin-bottom: 15px;
             border-left: 4px solid var(--primary);
         }
-        .update-box.old { border-left-color: #34c759; }
     </style>
 </head>
 <body>
 
     <div class="container">
+        <div class="lang-switch">
+            <a href="index.html" class="active" title="Polski">🇵🇱</a>
+            <a href="en.html" title="English">🇬🇧</a>
+        </div>
+
         <nav>
             <button class="tab-btn active" onclick="openTab('about')">O Aplikacji</button>
             <button class="tab-btn" onclick="openTab('instructions')">Instrukcje</button>
@@ -145,7 +166,8 @@
 
         <div id="about" class="tab-content active">
             <div class="text-center">
-                <img src="logo.png" alt="Logo Flex App" style="width: 100px; height: 100px; border-radius: 22px; margin: 0 auto 20px; display: block; box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3);">
+                <img src="logo.png" alt="Flex App Logo" class="app-logo" onerror="this.style.display='none'">
+                
                 <h1>Flex App</h1>
                 <p style="font-size: 18px; color: #666;">Twoje finanse pod pełną kontrolą. Prosto, bezpiecznie i elegancko.</p>
             </div>
@@ -156,18 +178,16 @@
             <div class="update-box">
                 <strong>Wersja 1.1 (Wkrótce)</strong>
                 <ul>
-                    <li>Możliwość tworzenia wspólnych kont z innymi użytkownikami</li>
-                    <li>Eksport danych do pliku CSV</li>
+                    <li>Dodanie możliwości łączenia wybranych kont z innymi użytkownikami</li>
+                    <li>Dodanie kolejnych języków</li>
+                    <li>Poprawienie błędów zgłaszanych przez użytkowników</li>
                 </ul>
             </div>
-
-            <h2>Ostatnie zmiany ✅</h2>
-            
+        </div>
 
         <div id="instructions" class="tab-content">
-            <h2>Często zadawane pytania i instrukcje</h2>
-            <p>Kliknij w temat, aby zobaczyć instrukcję krok po kroku.</p>
-
+            <h2>Instrukcje krok po kroku</h2>
+            
             <details>
                 <summary>Jak dodać nowy wydatek?</summary>
                 <div class="instruction-content">
@@ -180,7 +200,6 @@
                     </ol>
                 </div>
             </details>
-
             <details>
                 <summary>Jak zmienić główną walutę aplikacji?</summary>
                 <div class="instruction-content">
@@ -204,37 +223,26 @@
         <div id="privacy" class="tab-content">
             <h2>Kontakt ze wsparciem</h2>
             <p>Masz problem z aplikacją, znalazłeś błąd, a może masz pomysł na nową funkcję? Napisz do nas!</p>
-            <p>📧 Email: <strong><a href="mailto:appflex.support@gmail.com" style="color: var(--primary);">kontakt@flexapp.pl</a></strong></p>
+            <p>📧 Email: <strong><a href="mailto:kontakt@flexapp.pl" style="color: var(--primary);">kontakt@flexapp.pl</a></strong></p>
             
             <hr style="border: none; border-top: 1px solid var(--border); margin: 30px 0;">
 
             <h2>Polityka Prywatności</h2>
-            <p>Twoja prywatność jest dla nas priorytetem. Aplikacja Flex App została zaprojektowana tak, aby chronić Twoje dane finansowe.</p>
             <ul>
-                <li><strong>Gdzie są Twoje dane?</strong> Wszystkie dane dotyczące Twoich transakcji, budżetów i kont są przechowywane lokalnie na Twoim urządzeniu (oraz na Twoim prywatnym koncie iCloud, jeśli używasz synchronizacji).</li>
+                <li><strong>Gdzie są Twoje dane?</strong> Wszystkie dane dotyczące Twoich transakcji, budżetów i kont są przechowywane lokalnie na Twoim urządzeniu (oraz na Twoim prywatnym koncie iCloud).</li>
                 <li><strong>Czego NIE robimy?</strong> Nie wysyłamy Twoich danych finansowych na nasze serwery, nie analizujemy ich, ani nie sprzedajemy firmom trzecim.</li>
                 <li><strong>Analityka:</strong> Zbieramy jedynie anonimowe dane o awariach aplikacji (crash reports) dostarczane przez system Apple, aby móc szybciej naprawiać błędy.</li>
             </ul>
-            <p><em>Ostatnia aktualizacja: Marzec 2026</em></p>
         </div>
     </div>
 
     <script>
         function openTab(tabId) {
-            // Ukryj wszystkie sekcje
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            // Odznacz wszystkie przyciski
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Pokaż wybraną sekcję i zaznacz przycisk
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             event.currentTarget.classList.add('active');
         }
     </script>
-
 </body>
 </html>
