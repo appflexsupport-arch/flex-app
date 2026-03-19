@@ -1,265 +1,249 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="pl">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex App - Twoje Finanse</title>
+    <style>
+        /* STYL BAZOWY (Styl Apple/iOS) */
+        :root {
+            --bg-color: #f5f5f7;
+            --text-color: #1d1d1f;
+            --card-bg: #ffffff;
+            --primary: #007aff;
+            --border: #d2d2d7;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* NAWIGACJA (ZAKŁADKI) */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            background: var(--border);
+            padding: 5px;
+            border-radius: 12px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        nav button {
+            background: transparent;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #555;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        nav button.active {
+            background: var(--card-bg);
+            color: var(--text-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* SEKCJE */
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* NAGŁÓWKI I LOGO */
+        h1, h2 { margin-top: 0; }
+        .text-center { text-align: center; }
+        .logo-placeholder {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #007aff, #00c6ff);
+            border-radius: 22px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3);
+        }
+
+        /* ROZWIJANE LISTY (INSTRUKCJE) */
+        details {
+            background: var(--bg-color);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            padding: 15px;
+            cursor: pointer;
+        }
+        summary {
+            font-weight: 600;
+            font-size: 18px;
+            outline: none;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::after {
+            content: '+';
+            font-size: 20px;
+            color: var(--primary);
+        }
+        details[open] summary::after { content: '−'; }
+        .instruction-content {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+            font-size: 15px;
+        }
+
+        /* LISTY AKTUALIZACJI */
+        .update-box {
+            background: var(--bg-color);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+        }
+        .update-box.old { border-left-color: #34c759; }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="pl"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Flex App - Twoje Finanse&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* STYL BAZOWY (Styl Apple/iOS) */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>:root {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--bg-color: #f5f5f7;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--text-color: #1d1d1f;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--card-bg: #ffffff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--primary: #007aff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--border: #d2d2d7;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--bg-color);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-color);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.6;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 800px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* NAWIGACJA (ZAKŁADKI) */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>nav {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--border);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 5px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: fit-content;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-left: auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-right: auto;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>nav button {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: transparent;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #555;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>nav button.active {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--card-bg);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-color);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 2px 5px rgba(0,0,0,0.1);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* SEKCJE */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.tab-content {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--card-bg);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 15px rgba(0,0,0,0.05);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeIn 0.3s ease-in-out;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.tab-content.active {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>@keyframes fadeIn {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>from { opacity: 0; transform: translateY(10px); }</p>
-<p class="p1"><span class="Apple-converted-space">            </span>to { opacity: 1; transform: translateY(0); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* NAGŁÓWKI I LOGO */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>h1, h2 { margin-top: 0; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-center { text-align: center; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.logo-placeholder {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 100px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #007aff, #00c6ff);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 22px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* ROZWIJANE LISTY (INSTRUKCJE) */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>details {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--bg-color);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>summary {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>outline: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>list-style: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>summary::-webkit-details-marker { display: none; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>summary::after {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>content: '+';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>details[open] summary::after { content: '−'; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.instruction-content {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding-top: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-top: 1px solid var(--border);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* LISTY AKTUALIZACJI */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.update-box {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--bg-color);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-left: 4px solid var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.update-box.old { border-left-color: #34c759; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;nav&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="tab-btn active" onclick="openTab('about')"&gt;O Aplikacji&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="tab-btn" onclick="openTab('instructions')"&gt;Instrukcje&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="tab-btn" onclick="openTab('privacy')"&gt;Prywatność &amp; Kontakt&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/nav&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="about" class="tab-content active"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="logo-placeholder"&gt;F&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h1&gt;Flex App&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p style="font-size: 18px; color: #666;"&gt;Twoje finanse pod pełną kontrolą. Prosto, bezpiecznie i elegancko.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;hr style="border: none; border-top: 1px solid var(--border); margin: 30px 0;"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Nadchodzące aktualizacje 🚀&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="update-box"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;strong&gt;Wersja 1.2 (Wkrótce)&lt;/strong&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Wsparcie dla tagów w wydatkach&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Nowy ekran statystyk z wykresami kołowymi&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Eksport danych do pliku CSV/PDF&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Ostatnie zmiany ✅&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="update-box old"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;strong&gt;Wersja 1.1&lt;/strong&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Dodano możliwość zmiany kodu PIN do aplikacji&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Pełna lokalizacja na 7 języków (w tym Hiszpański i Niemiecki)&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Poprawiono przeliczanie walut w widoku budżetu&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="instructions" class="tab-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Często zadawane pytania i instrukcje&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;Kliknij w temat, aby zobaczyć instrukcję krok po kroku.&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;details&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;summary&gt;Jak dodać nowy wydatek?&lt;/summary&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="instruction-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;ol&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;Otwórz główny ekran aplikacji (Pulpit).&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;Kliknij duży, niebieski przycisk &lt;strong&gt;"+"&lt;/strong&gt; na dole ekranu.&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;Wpisz kwotę i wybierz kategorię.&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;Opcjonalnie możesz dodać notatkę (np. "Kawa z Michałem").&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;Kliknij &lt;strong&gt;"Zapisz"&lt;/strong&gt; w prawym górnym rogu.&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/ol&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/details&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;details&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;summary&gt;Jak zmienić główną walutę aplikacji?&lt;/summary&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="instruction-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;ol&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;Przejdź do zakładki &lt;strong&gt;Ustawienia&lt;/strong&gt; (ikona zębatki).&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;W sekcji "Wygląd i Język" wybierz &lt;strong&gt;Główna waluta&lt;/strong&gt;.&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;Wybierz nową walutę z listy (np. EUR lub USD).&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;Aplikacja automatycznie przeliczy Twoje dotychczasowe wpisy po aktualnym kursie!&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/ol&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/details&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;details&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;summary&gt;Jak zresetować swój kod PIN?&lt;/summary&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="instruction-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>Ze względów bezpieczeństwa, jeśli zapomniałeś kodu PIN i nie masz włączonego FaceID/TouchID, jedyną opcją jest odinstalowanie i ponowne zainstalowanie aplikacji. Upewnij się, że Twoje dane są zsynchronizowane z iCloud.</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/details&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="privacy" class="tab-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Kontakt ze wsparciem&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;Masz problem z aplikacją, znalazłeś błąd, a może masz pomysł na nową funkcję? Napisz do nas!&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;📧 Email: &lt;strong&gt;&lt;a href="mailto:kontakt@flexapp.pl" style="color: var(--primary);"&gt;kontakt@flexapp.pl&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;hr style="border: none; border-top: 1px solid var(--border); margin: 30px 0;"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Polityka Prywatności&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;Twoja prywatność jest dla nas priorytetem. Aplikacja Flex App została zaprojektowana tak, aby chronić Twoje dane finansowe.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;strong&gt;Gdzie są Twoje dane?&lt;/strong&gt; Wszystkie dane dotyczące Twoich transakcji, budżetów i kont są przechowywane lokalnie na Twoim urządzeniu (oraz na Twoim prywatnym koncie iCloud, jeśli używasz synchronizacji).&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;strong&gt;Czego NIE robimy?&lt;/strong&gt; Nie wysyłamy Twoich danych finansowych na nasze serwery, nie analizujemy ich, ani nie sprzedajemy firmom trzecim.&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;strong&gt;Analityka:&lt;/strong&gt; Zbieramy jedynie anonimowe dane o awariach aplikacji (crash reports) dostarczane przez system Apple, aby móc szybciej naprawiać błędy.&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;&lt;em&gt;Ostatnia aktualizacja: Marzec 2026&lt;/em&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function openTab(tabId) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Ukryj wszystkie sekcje</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.tab-content').forEach(tab =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>tab.classList.remove('active');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Odznacz wszystkie przyciski</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.tab-btn').forEach(btn =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>btn.classList.remove('active');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Pokaż wybraną sekcję i zaznacz przycisk</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById(tabId).classList.add('active');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>event.currentTarget.classList.add('active');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+    <div class="container">
+        <nav>
+            <button class="tab-btn active" onclick="openTab('about')">O Aplikacji</button>
+            <button class="tab-btn" onclick="openTab('instructions')">Instrukcje</button>
+            <button class="tab-btn" onclick="openTab('privacy')">Prywatność & Kontakt</button>
+        </nav>
+
+        <div id="about" class="tab-content active">
+            <div class="text-center">
+                <div class="logo-placeholder">F</div>
+                <h1>Flex App</h1>
+                <p style="font-size: 18px; color: #666;">Twoje finanse pod pełną kontrolą. Prosto, bezpiecznie i elegancko.</p>
+            </div>
+            
+            <hr style="border: none; border-top: 1px solid var(--border); margin: 30px 0;">
+
+            <h2>Nadchodzące aktualizacje 🚀</h2>
+            <div class="update-box">
+                <strong>Wersja 1.2 (Wkrótce)</strong>
+                <ul>
+                    <li>Wsparcie dla tagów w wydatkach</li>
+                    <li>Nowy ekran statystyk z wykresami kołowymi</li>
+                    <li>Eksport danych do pliku CSV/PDF</li>
+                </ul>
+            </div>
+
+            <h2>Ostatnie zmiany ✅</h2>
+            <div class="update-box old">
+                <strong>Wersja 1.1</strong>
+                <ul>
+                    <li>Dodano możliwość zmiany kodu PIN do aplikacji</li>
+                    <li>Pełna lokalizacja na 7 języków (w tym Hiszpański i Niemiecki)</li>
+                    <li>Poprawiono przeliczanie walut w widoku budżetu</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="instructions" class="tab-content">
+            <h2>Często zadawane pytania i instrukcje</h2>
+            <p>Kliknij w temat, aby zobaczyć instrukcję krok po kroku.</p>
+
+            <details>
+                <summary>Jak dodać nowy wydatek?</summary>
+                <div class="instruction-content">
+                    <ol>
+                        <li>Otwórz główny ekran aplikacji (Pulpit).</li>
+                        <li>Kliknij duży, niebieski przycisk <strong>"+"</strong> na dole ekranu.</li>
+                        <li>Wpisz kwotę i wybierz kategorię.</li>
+                        <li>Opcjonalnie możesz dodać notatkę (np. "Kawa z Michałem").</li>
+                        <li>Kliknij <strong>"Zapisz"</strong> w prawym górnym rogu.</li>
+                    </ol>
+                </div>
+            </details>
+
+            <details>
+                <summary>Jak zmienić główną walutę aplikacji?</summary>
+                <div class="instruction-content">
+                    <ol>
+                        <li>Przejdź do zakładki <strong>Ustawienia</strong> (ikona zębatki).</li>
+                        <li>W sekcji "Wygląd i Język" wybierz <strong>Główna waluta</strong>.</li>
+                        <li>Wybierz nową walutę z listy (np. EUR lub USD).</li>
+                        <li>Aplikacja automatycznie przeliczy Twoje dotychczasowe wpisy po aktualnym kursie!</li>
+                    </ol>
+                </div>
+            </details>
+
+            <details>
+                <summary>Jak zresetować swój kod PIN?</summary>
+                <div class="instruction-content">
+                    Ze względów bezpieczeństwa, jeśli zapomniałeś kodu PIN i nie masz włączonego FaceID/TouchID, jedyną opcją jest odinstalowanie i ponowne zainstalowanie aplikacji. Upewnij się, że Twoje dane są zsynchronizowane z iCloud.
+                </div>
+            </details>
+        </div>
+
+        <div id="privacy" class="tab-content">
+            <h2>Kontakt ze wsparciem</h2>
+            <p>Masz problem z aplikacją, znalazłeś błąd, a może masz pomysł na nową funkcję? Napisz do nas!</p>
+            <p>📧 Email: <strong><a href="mailto:kontakt@flexapp.pl" style="color: var(--primary);">kontakt@flexapp.pl</a></strong></p>
+            
+            <hr style="border: none; border-top: 1px solid var(--border); margin: 30px 0;">
+
+            <h2>Polityka Prywatności</h2>
+            <p>Twoja prywatność jest dla nas priorytetem. Aplikacja Flex App została zaprojektowana tak, aby chronić Twoje dane finansowe.</p>
+            <ul>
+                <li><strong>Gdzie są Twoje dane?</strong> Wszystkie dane dotyczące Twoich transakcji, budżetów i kont są przechowywane lokalnie na Twoim urządzeniu (oraz na Twoim prywatnym koncie iCloud, jeśli używasz synchronizacji).</li>
+                <li><strong>Czego NIE robimy?</strong> Nie wysyłamy Twoich danych finansowych na nasze serwery, nie analizujemy ich, ani nie sprzedajemy firmom trzecim.</li>
+                <li><strong>Analityka:</strong> Zbieramy jedynie anonimowe dane o awariach aplikacji (crash reports) dostarczane przez system Apple, aby móc szybciej naprawiać błędy.</li>
+            </ul>
+            <p><em>Ostatnia aktualizacja: Marzec 2026</em></p>
+        </div>
+    </div>
+
+    <script>
+        function openTab(tabId) {
+            // Ukryj wszystkie sekcje
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Odznacz wszystkie przyciski
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Pokaż wybraną sekcję i zaznacz przycisk
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+
 </body>
 </html>
