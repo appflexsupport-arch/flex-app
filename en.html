@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex App - Personal Finance</title>
+    <style>
+        :root { --bg-color: #f5f5f7; --text-color: #1d1d1f; --card-bg: #ffffff; --primary: #007aff; --border: #d2d2d7; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; position: relative; }
+        
+        .lang-switch { position: absolute; top: 20px; right: 20px; background: var(--card-bg); padding: 5px 10px; border-radius: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .lang-switch a { text-decoration: none; font-size: 24px; margin: 0 5px; opacity: 0.4; transition: 0.3s; }
+        .lang-switch a.active { opacity: 1; transform: scale(1.1); }
+
+        nav { display: flex; justify-content: center; gap: 10px; margin-top: 60px; margin-bottom: 30px; background: var(--border); padding: 5px; border-radius: 12px; width: fit-content; margin-left: auto; margin-right: auto; }
+        nav button { background: transparent; border: none; padding: 10px 20px; font-size: 16px; font-weight: 600; color: #555; cursor: pointer; border-radius: 8px; transition: all 0.3s ease; }
+        nav button.active { background: var(--card-bg); color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+        .tab-content { display: none; background: var(--card-bg); padding: 40px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); animation: fadeIn 0.3s ease-in-out; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        h1, h2 { margin-top: 0; } .text-center { text-align: center; }
+        
+        .app-logo { width: 100px; height: 100px; border-radius: 22px; margin: 0 auto 20px; display: block; box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3); object-fit: cover; }
+
+        details { background: var(--bg-color); border-radius: 12px; margin-bottom: 10px; padding: 15px; cursor: pointer; }
+        summary { font-weight: 600; font-size: 18px; outline: none; list-style: none; display: flex; justify-content: space-between; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '+'; font-size: 20px; color: var(--primary); }
+        details[open] summary::after { content: '−'; }
+        .instruction-content { margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border); font-size: 15px; }
+
+        .update-box { background: var(--bg-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; border-left: 4px solid var(--primary); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="lang-switch">
+            <a href="index.html" title="Polski">🇵🇱</a>
+            <a href="en.html" class="active" title="English">🇬🇧</a>
+        </div>
+
+        <nav>
+            <button class="tab-btn active" onclick="openTab('about')">About App</button>
+            <button class="tab-btn" onclick="openTab('instructions')">Guides</button>
+            <button class="tab-btn" onclick="openTab('privacy')">Privacy & Support</button>
+        </nav>
+
+        <div id="about" class="tab-content active">
+            <div class="text-center">
+                <img src="logo.png" alt="Flex App Logo" class="app-logo" onerror="this.style.display='none'">
+                
+                <h1>Flex App</h1>
+                <p style="font-size: 18px; color: #666;">Your personal finances under full control. Simple, secure, and elegant.</p>
+            </div>
+            
+            <hr style="border: none; border-top: 1px solid var(--border); margin: 30px 0;">
+
+            <h2>Upcoming Updates 🚀</h2>
+            <div class="update-box">
+                <strong>Version 1.1 (Coming soon)</strong>
+                <ul>
+                    <li>Added ability to set and change custom app PIN code</li>
+                    <li>Full localization in 7 languages (including Spanish and German)</li>
+                    <li>Visual improvements and real-time currency conversion fixes</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="instructions" class="tab-content">
+            <h2>Step-by-step Guides</h2>
+            
+            <details>
+                <summary>How to add a new expense?</summary>
+                <div class="instruction-content">
+                    <ol>
+                        <li>Open the main Dashboard screen.</li>
+                        <li>Tap the large blue <strong>"+"</strong> button at the bottom.</li>
+                        <li>Enter the amount and select a category.</li>
+                        <li>Optionally, add a note (e.g., "Coffee with Mike").</li>
+                        <li>Tap <strong>"Save"</strong> in the top right corner.</li>
+                    </ol>
+                </div>
+            </details>
+
+            <details>
+                <summary>How to change the main currency?</summary>
+                <div class="instruction-content">
+                    <ol>
+                        <li>Go to the <strong>Settings</strong> tab (gear icon).</li>
+                        <li>Under "Appearance & Region", select <strong>Main Currency</strong>.</li>
+                        <li>Choose a new currency from the list (e.g., EUR or USD).</li>
+                        <li>The app will automatically convert your existing records based on current rates!</li>
+                    </ol>
+                </div>
+            </details>
+
+            <details>
+                <summary>How to reset my PIN code?</summary>
+                <div class="instruction-content">
+                    For security reasons, if you forget your PIN and do not have FaceID/TouchID enabled, the only option is to reinstall the application. Ensure your data is synced with iCloud before doing so.
+                </div>
+            </details>
+        </div>
+
+        <div id="privacy" class="tab-content">
+            <h2>Contact Support</h2>
+            <p>Having an issue, found a bug, or have a feature request? Let us know!</p>
+            <p>📧 Email: <strong><a href="mailto:kontakt@flexapp.pl" style="color: var(--primary);">kontakt@flexapp.pl</a></strong></p>
+            
+            <hr style="border: none; border-top: 1px solid var(--border); margin: 30px 0;">
+
+            <h2>Privacy Policy</h2>
+            <ul>
+                <li><strong>Where is your data?</strong> All data regarding your transactions, budgets, and accounts is stored locally on your device (and securely backed up to your private iCloud account).</li>
+                <li><strong>What we DO NOT do:</strong> We never send your financial data to our servers, we do not analyze it, and we do not sell it to third parties.</li>
+                <li><strong>Analytics:</strong> We only collect anonymous crash reports provided by Apple's systems to help us fix bugs faster.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
